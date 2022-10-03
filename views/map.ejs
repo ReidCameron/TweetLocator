@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweet Locator Map</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <script src="../script.js" defer></script>
+    <meta class="data" data-data=<%- data %>>
+    <meta class="query" data-query=<%- query %>>
+    
+</head>
+<body>
+    <header>
+        <!-- <img> -->
+        <nav>
+            <ul class="nav-list">
+                <li><a href="#locator-tool">Map</a></li>
+                <li><a href="#explanation">How it Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1><a name="locator-tool">Tweet Locator</a> </h1>
+        <section class="tool">
+        <h2>Locator Tool</h2>
+        <div id="search-section">
+            <div class="search-bar">
+                <form id="search-form" action = "/map" method="POST">
+                    <input 
+                        type="text" 
+                        id="search-input-bar" 
+                        name = "query" 
+                        placeholder="Search Here">
+                    <button class="search-button">
+                        <img class="search-icon" src="../images/search-icon.png">
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class = 'map-container'>
+            <%- include('../partials/usmap.ejs') %>
+            <ul class="details-list">
+                <li class="detailed-name">State Name</li>
+                <li class="detailed-rank">Rank</li>
+                <li class="detailed-number"># of Tweets</li>
+            </ul>
+        </div>
+        </section>
+        <section class="information-section">
+            <div class="explanation-container">
+                <h2><a name="explanation">How it works</a></h2>
+                <p>This site was made using: HTML, CSS, JS, NodeJS, and ExpressJS .</p>
+                <!-- TODO: Add Images -->
+                <!-- <div class="language images">
+                    <img id="HTML">
+                    <img id="CSS">
+                    <img id="JS">
+                    <img id="NodeJS">
+                    <img id="ExpressJS">
+                </div> -->
+                <p>A term is sent to the server from search bar.</p>
+                <p>The server sends a tweet search request to the Twitter API.</p>
+                <p>Any usuable location metadata is extracted and then sent to the GoogleMaps API to find a place match.</p>
+                <p>The results take some time to return to the server so early results are streamed to the client.</p>
+                <p>On completion, the user can click on any state to see the number of tweets and the state's ranking.</p>
+            </div>
+            <div class="contact-container">
+                <div>
+                    <h2><a name="contact">Contact me for hire!</a></h2>
+                    <p>Software Developer: Cameron Reid</p>
+                </div>
+                <div class="contact-links">
+                    <a href="https://github.com/ReidCameron?tab=projects" target="_blank">
+                        <img class="logo" src="../images/github-logo.png" width="20px" height="20px">
+                    </a>
+                    <a href="https://www.linkedin.com/in/cameronreid2022/" target="_blank">
+                        <img class="logo" src="../images/linkedin-logo.png" width="20px" height="20px">
+                    </a>
+                    <a href="../files/resume.pdf" target="_blank" >
+                        <img class="logo" src="../images/resume-icon.png" width="20px" height="20px">
+                    </a>
+                </div>
+                <div>
+                    <form class="contact-form" action = "/submit-form" method="POST">
+                        <input type="text" name="email" placeholder="Email">
+                        <input type="text" name="subject" placeholder="Subject">
+                        <textarea name="message" placeholder="Message"></textarea>
+                        <button >Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
