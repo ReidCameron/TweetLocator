@@ -30,9 +30,9 @@ app.get('/map', (req, res) =>{
     res.render('map', {data: "", query: ""});
 });
 app.get('/map/:query', (req, res) =>{
-    const realOrFake = false;//true for real results, false for simulated
+    const realOrFake = true;//true for real results, false for simulated
     if(realOrFake){
-        getTweetStates(req.params.query, 10).then( (response) => {
+        getTweetStates(req.params.query, 20).then( (response) => {
             let data = generateData(response);
             let query = {'text': req.params.query.replaceAll(" ", "%20")};
             res.render('map', {data: JSON.stringify(data), query: JSON.stringify(query)});
